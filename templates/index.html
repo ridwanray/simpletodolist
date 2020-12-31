@@ -1,0 +1,27 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Todo</title>
+</head>
+<body>
+    <!---Ridwanray------------alabascode-->
+    <h1 style="text-align: center;">This page lists all todos <br>
+        You can also add new one using the form below!</h1>
+
+        <form style="text-align: center;" action="{% url 'todo:newtodo' %}" method="POST" >
+            {% csrf_token %}
+            <input type="text" name="content" required>
+            <input type="submit" value="Add me">
+        </form>
+    {% for i in todo %}
+        <p style="text-align: center;">{{i.content}}  <br>
+            {{i.time_added|naturaltime}} 
+            <hr> 
+        </p>
+
+    {%endfor%}
+</body>
+</html>
